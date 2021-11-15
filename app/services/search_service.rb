@@ -35,7 +35,7 @@ class SearchService < BaseService
   end
 
   def perform_statuses_search!
-    definition = parsed_query.apply(StatusesIndex))
+    definition = parsed_query.apply(StatusesIndex)
 
     if @options[:min_id].present? || @options[:max_id].present?
       range      = {}
