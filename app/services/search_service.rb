@@ -35,11 +35,7 @@ class SearchService < BaseService
   end
 
   def perform_statuses_search!
-    definition = parsed_query.apply(StatusesIndex.filter(term: { searchable_by: @account.id }))
-
-    if @options[:account_id].present?
-      definition = definition.filter(term: { account_id: @options[:account_id] })
-    end
+    definition = parsed_query.apply(StatusesIndex))
 
     if @options[:min_id].present? || @options[:max_id].present?
       range      = {}
@@ -49,11 +45,7 @@ class SearchService < BaseService
     end
 
     results             = definition.limit(@limit).offset(@offset).objects.compact
-    account_ids         = results.map(&:account_id)
-    account_domains     = results.map(&:account_domain)
-    preloaded_relations = relations_map_for_account(@account, account_ids, account_domains)
-
-    results.reject { |status| StatusFilter.new(status, @account, preloaded_relations).filtered? }
+    
   rescue Faraday::ConnectionFailed, Parslet::ParseFailed
     []
   end
