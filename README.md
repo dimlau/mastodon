@@ -3,13 +3,21 @@
 
 [![GitHub release](https://img.shields.io/github/release/mastodon/mastodon.svg)][releases]
 [![Build Status](https://img.shields.io/circleci/project/github/mastodon/mastodon.svg)][circleci]
+<<<<<<< HEAD
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
+=======
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/mastodon/mastodon.svg)][code_climate]
+>>>>>>> 4ad7b81bc94561f11460f50c7b6f8f9772f356e5
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
 [![Docker Pulls](https://img.shields.io/docker/pulls/tootsuite/mastodon.svg)][docker]
 
 [releases]: https://github.com/mastodon/mastodon/releases
 [circleci]: https://circleci.com/gh/mastodon/mastodon
+<<<<<<< HEAD
 [code_climate]: https://codeclimate.com/github/tootsuite/mastodon
+=======
+[code_climate]: https://codeclimate.com/github/mastodon/mastodon
+>>>>>>> 4ad7b81bc94561f11460f50c7b6f8f9772f356e5
 [crowdin]: https://crowdin.com/project/mastodon
 [docker]: https://hub.docker.com/r/tootsuite/mastodon/
 
@@ -74,7 +82,12 @@ Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Strea
 
 The repository includes deployment configurations for **Docker and docker-compose**, but also a few specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**stand-alone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
 
-A **Vagrant** configuration is included for development purposes.
+A **Vagrant** configuration is included for development purposes. To use it, complete following steps:
+
+- Install Vagrant and Virtualbox
+- Run `vagrant up`
+- Run `vagrant ssh -c "cd /vagrant && foreman start"`
+- Open `http://mastodon.local` in your browser
 
 ## Contributing
 

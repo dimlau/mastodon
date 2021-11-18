@@ -23,8 +23,11 @@ class Auth::SessionsController < Devise::SessionsController
 
   def create
     super do |resource|
-      resource.update_sign_in!(request, new_sign_in: true)
-      flash.delete(:notice)
+      # We only need to call this if this hasn't already been
+      # called from one of the two-factor or sign-in token
+      # authentication methods
+
+      on_authentication_success(resource, :password) unless @on_authentication_success_called
     end
   end
 
@@ -39,9 +42,10 @@ class Auth::SessionsController < Devise::SessionsController
   def webauthn_options
     user = User.find_by(id: session[:attempt_user_id])
 
-    if user.webauthn_enabled?
+    if user&.webauthn_enabled?
       options_for_get = WebAuthn::Credential.options_for_get(
-        allow: user.webauthn_credentials.pluck(:external_id)
+        allow: user.webauthn_credentials.pluck(:external_id),
+        user_verification: 'discouraged'
       )
 
       session[:webauthn_challenge] = options_for_get.challenge
@@ -136,5 +140,34 @@ class Auth::SessionsController < Devise::SessionsController
   def clear_attempt_from_session
     session.delete(:attempt_user_id)
     session.delete(:attempt_user_updated_at)
+  end
+
+  def on_authentication_success(user, security_measure)
+    @on_authentication_success_called = true
+
+    clear_attempt_from_session
+
+    user.update_sign_in!(request, new_sign_in: true)
+    sign_in(user)
+    flash.delete(:notice)
+
+    LoginActivity.create(
+      user: user,
+      success: true,
+      authentication_method: security_measure,
+      ip: request.remote_ip,
+      user_agent: request.user_agent
+    )
+  end
+
+  def on_authentication_failure(user, security_measure, failure_reason)
+    LoginActivity.create(
+      user: user,
+      success: false,
+      authentication_method: security_measure,
+      failure_reason: failure_reason,
+      ip: request.remote_ip,
+      user_agent: request.user_agent
+    )
   end
 end
