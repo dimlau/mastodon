@@ -120,6 +120,10 @@ class Footer extends ImmutablePureComponent {
       onClose();
     }
 
+    if (onClose) {
+      onClose();
+    }
+
     router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
   }
 
