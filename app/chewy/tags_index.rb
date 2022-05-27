@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TagsIndex < Chewy::Index
+<<<<<<< HEAD
   settings index: { refresh_interval: '15m' }, analysis: {
     char_filter: {
       tsconvert: {
@@ -10,6 +11,9 @@ class TagsIndex < Chewy::Index
         convert_type: 't2s',
       },
     },
+=======
+  settings index: { refresh_interval: '30s' }, analysis: {
+>>>>>>> v3.5.3
     analyzer: {
       content: {
         tokenizer: 'ik_max_word',
@@ -32,7 +36,11 @@ class TagsIndex < Chewy::Index
     },
   }
 
-  index_scope ::Tag.listable, delete_if: ->(tag) { tag.destroyed? || !tag.listable? }
+  index_scope ::Tag.listable
+
+  crutch :time_period do
+    7.days.ago.to_date..0.days.ago.to_date
+  end
 
   root date_detection: false do
     field :name, type: 'text', analyzer: 'content' do
@@ -40,7 +48,7 @@ class TagsIndex < Chewy::Index
     end
 
     field :reviewed, type: 'boolean', value: ->(tag) { tag.reviewed? }
-    field :usage, type: 'long', value: ->(tag) { tag.history.reduce(0) { |total, day| total + day.accounts } }
+    field :usage, type: 'long', value: ->(tag, crutches) { tag.history.aggregate(crutches.time_period).accounts }
     field :last_status_at, type: 'date', value: ->(tag) { tag.last_status_at || tag.created_at }
   end
 end
