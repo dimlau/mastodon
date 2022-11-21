@@ -1,5 +1,10 @@
-.header a[href^="https://joinmastodon.org"],
-.no-list a[href^="https://joinmastodon.org"],
-.hint.subtle-hint{
-	display:none !important
+@supports(display:grid) {
+	#dntimg {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr))
+	}
+
+	#dntimg img {
+		width: 100%
+	}
 }

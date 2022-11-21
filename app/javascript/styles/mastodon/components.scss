@@ -2200,7 +2200,7 @@ a.account__display-name {
 
       @media screen and (min-width: $no-gap-breakpoint) {
         padding: 0 10px;
-        max-width: 600px;
+        max-width: 640px;
       }
     }
   }
@@ -8005,8 +8005,8 @@ noscript {
     display: flex;
 
     &__choice {
-      flex: 0 0 auto;
-      width: 50%;
+      flex: 1;
+      width: 100%;
       box-sizing: border-box;
       padding: 20px;
 
