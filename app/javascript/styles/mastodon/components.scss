@@ -8005,8 +8005,8 @@ noscript {
     display: flex;
 
     &__choice {
-      flex: 1;
-      width: 100%;
+      flex: 0 0 auto;
+      width: 50%;
       box-sizing: border-box;
       padding: 20px;
 
@@ -8026,6 +8026,10 @@ noscript {
           margin-bottom: 0;
         }
       }
+    }
+    &__choice:only-of-type {
+      flex: 1;
+      width: 100%;
     }
   }
 

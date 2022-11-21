@@ -143,8 +143,15 @@ class InteractionModal extends React.PureComponent {
 
         <div className='interaction-modal__choices'>
           <div className='interaction-modal__choices__choice'>
+            <h3><FormattedMessage id='interaction_modal.on_this_server' defaultMessage='On this server' /></h3>
             <a href='/auth/sign_in' className='button button--block'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
             {signupButton}
+          </div>
+
+          <div className='interaction-modal__choices__choice'>
+            <h3><FormattedMessage id='interaction_modal.on_another_server' defaultMessage='On a different server' /></h3>
+            <p><FormattedMessage id='interaction_modal.other_server_instructions' defaultMessage='Copy and paste this URL into the search field of your favourite Mastodon app or the web interface of your Mastodon server.' /></p>
+            <Copypaste value={url} />
           </div>
         </div>
       </div>
