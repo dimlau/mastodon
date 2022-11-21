@@ -8026,10 +8026,11 @@ noscript {
           margin-bottom: 0;
         }
       }
-    }
-    &__choice:only-of-type {
-      flex: 1;
-      width: 100%;
+
+      &:only-of-type {
+        flex: 1;
+        width: 100%;
+      }
     }
   }
 
