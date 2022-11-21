@@ -197,7 +197,7 @@ class About extends React.PureComponent {
           </Section>
 
           <LinkFooter />
-          
+
         </div>
 
         <Helmet>
