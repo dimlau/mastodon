@@ -822,8 +822,8 @@
 .status__content,
 .reply-indicator__content {
   position: relative;
-  font-size: 15px;
-  line-height: 22px;
+  font-size: 1.2rem;
+  line-height: 1.5;
   word-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
@@ -969,8 +969,8 @@
 
 .status__content__read-more-button {
   display: block;
-  font-size: 15px;
-  line-height: 22px;
+  font-size: 1rem;
+  line-height: 1.5;
   color: $highlight-text-color;
   border: 0;
   background: transparent;
@@ -1255,8 +1255,8 @@
   }
 
   .status__content {
-    font-size: 19px;
-    line-height: 24px;
+    font-size: 1.4rem;
+    line-height: 1.6;
 
     .emojione {
       width: 24px;
@@ -5729,8 +5729,8 @@ a.status-card.compact:hover {
 
   .status__content {
     color: $inverted-text-color;
-    font-size: 19px;
-    line-height: 24px;
+    font-size: 1.3rem;
+    line-height: 1.6;
 
     .emojione {
       width: 24px;
