@@ -6,7 +6,6 @@ class TagsIndex < Chewy::Index
       content: {
         tokenizer: 'ik_max_word',
         filter: %w(lowercase asciifolding cjk_width),
-        char_filter: %w(tsconvert),
       },
 
       edge_ngram: {
