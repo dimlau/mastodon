@@ -2,6 +2,14 @@
 
 class TagsIndex < Chewy::Index
   settings index: { refresh_interval: '30s' }, analysis: {
+    char_filter: {
+      tsconvert: {
+        type: 'stconvert',
+        keep_both: false,
+        delimiter: '#',
+        convert_type: 't2s',
+      },
+    },
     analyzer: {
       content: {
         tokenizer: 'ik_max_word',
