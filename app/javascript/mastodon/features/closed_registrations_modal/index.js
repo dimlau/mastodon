@@ -60,4 +60,4 @@ class ClosedRegistrationsModal extends ImmutablePureComponent {
     );
   }
 
-};
+}

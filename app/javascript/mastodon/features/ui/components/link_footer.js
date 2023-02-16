@@ -44,7 +44,7 @@ class LinkFooter extends React.PureComponent {
     this.props.onLogout();
 
     return false;
-  }
+  };
 
   render () {
     const { signedIn, permissions } = this.context.identity;
@@ -52,29 +52,33 @@ class LinkFooter extends React.PureComponent {
     const canInvite = signedIn && ((permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS);
     const canProfileDirectory = profileDirectory;
 
+    const DividingCircle = <span aria-hidden>{' · '}</span>;
+
     return (
       <div className='link-footer'>
         <p>
+          <strong>{domain}</strong>:
+          {' '}
           <Link key='about' to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
           {canInvite && (
             <>
-              {' · '}
-              <a key='invites' href='/invites' target='_blank'><FormattedMessage id='footer.invite' defaultMessage='Invite people' /></a>
+              {DividingCircle}
+              <a href='/invites' target='_blank'><FormattedMessage id='footer.invite' defaultMessage='Invite people' /></a>
             </>
           )}
           {canProfileDirectory && (
             <>
-              {' · '}
-              <Link key='directory' to='/directory'><FormattedMessage id='footer.directory' defaultMessage='Profiles directory' /></Link>
+              {DividingCircle}
+              <Link to='/directory'><FormattedMessage id='footer.directory' defaultMessage='Profiles directory' /></Link>
             </>
           )}
-          {' · '}
-          <Link key='privacy-policy' to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
+          {DividingCircle}
+          <Link to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
         </p>
 
         <p>
           <a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='footer.get_app' defaultMessage='Get the app' /></a>
-          {' · '}
+          {DividingCircle}
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
           {' · '}
           <a href={source_url} rel='noopener noreferrer' target='_blank'>v{version}</a>
@@ -83,4 +87,4 @@ class LinkFooter extends React.PureComponent {
     );
   }
 
-};
+}
