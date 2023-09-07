@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks  } from 'mastodon/actions/server';
 import Column from 'mastodon/components/column';
 import { Icon  }  from 'mastodon/components/icon';
-import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { Skeleton } from 'mastodon/components/skeleton';
 import Account from 'mastodon/containers/account_container';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
@@ -117,12 +116,6 @@ class About extends PureComponent {
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <div className='scrollable about'>
-          <div className='about__header'>
-            <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
-            <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('domain')}</h1>
-            <p><FormattedMessage id='about.powered_by' defaultMessage='Decentralized social media powered by {mastodon}' values={{ mastodon: <a href='https://joinmastodon.org' className='about__mail' target='_blank'>Mastodon</a> }} /></p>
-          </div>
-
           <div className='about__meta'>
             <div className='about__meta__column'>
               <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
@@ -205,9 +198,6 @@ class About extends PureComponent {
 
           <LinkFooter />
 
-          <div className='about__footer'>
-            <p><FormattedMessage id='about.disclaimer' defaultMessage='Mastodon is free, open-source software, and a trademark of Mastodon gGmbH.' /></p>
-          </div>
         </div>
 
         <Helmet>
