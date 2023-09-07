@@ -55,7 +55,7 @@ describe RelationshipsController do
     end
 
     context 'when select parameter is provided' do
-      subject { patch :update, params: { form_account_batch: { account_ids: [poopfeast.id] }, block_domains: '' } }
+      subject { patch :update, params: { form_account_batch: { account_ids: [alice.id] }, remove_domains_from_followers: '' } }
 
       it 'soft-blocks followers from selected domains' do
         alice.follow!(user.account)
