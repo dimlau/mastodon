@@ -54,7 +54,7 @@ class NavigationPanel extends Component {
       <div className='navigation-panel'>
         <div className='navigation-panel__logo'>
           
-          {transientSingleColumn ? (
+          {transientSingleColumn && (
             <div class='switch-to-advanced'>
               {intl.formatMessage(messages.openedInClassicInterface)}
               {" "}
@@ -62,8 +62,6 @@ class NavigationPanel extends Component {
                 {intl.formatMessage(messages.advancedInterface)}
               </a>
             </div>
-          ) : (
-            <hr />
           )}
         </div>
 
