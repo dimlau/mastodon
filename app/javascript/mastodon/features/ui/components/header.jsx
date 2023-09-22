@@ -11,7 +11,6 @@ import { openModal } from 'mastodon/actions/modal';
 import { fetchServer } from 'mastodon/actions/server';
 import { Avatar } from 'mastodon/components/avatar';
 import { Icon } from 'mastodon/components/icon';
-import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';
 import { registrationsOpen, me, sso_redirect } from 'mastodon/initial_state';
 
 const Account = connect(state => ({
@@ -106,7 +105,7 @@ class Header extends PureComponent {
 
     return (
       <div className='ui__header'>
-        <Link to='/' className='ui__header__logo'>❤️</Link>
+        <Link to='/' className='ui__header__logo'><Icon id='coffee' /></Link>
 
         <div className='ui__header__links'>
           {content}

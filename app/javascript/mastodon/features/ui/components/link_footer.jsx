@@ -54,12 +54,9 @@ class LinkFooter extends PureComponent {
 
   render () {
     const { signedIn, permissions } = this.context.identity;
-    const { multiColumn } = this.props;
 
     const canInvite = signedIn && ((permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS);
     const canProfileDirectory = profileDirectory;
-
-    const DividingCircle = <span aria-hidden>{' · '}</span>;
 
     return (
       <div className='link-footer'>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
@@ -10,10 +10,6 @@ import { connect } from 'react-redux';
 import { fetchServer } from 'mastodon/actions/server';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { Skeleton } from 'mastodon/components/skeleton';
-
-const messages = defineMessages({
-  aboutActiveUsers: { id: 'server_banner.about_active_users', defaultMessage: 'People using this server during the last 30 days (Monthly Active Users)' },
-});
 
 const mapStateToProps = state => ({
   server: state.getIn(['server', 'server']),
@@ -33,7 +29,7 @@ class ServerBanner extends PureComponent {
   }
 
   render () {
-    const { server, intl } = this.props;
+    const server = this.props;
     const isLoading = server.get('isLoading');
 
     return (
