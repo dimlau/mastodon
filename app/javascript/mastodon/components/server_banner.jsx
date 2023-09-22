@@ -29,7 +29,7 @@ class ServerBanner extends PureComponent {
   }
 
   render () {
-    const server = this.props;
+    const { server } = this.props;
     const isLoading = server.get('isLoading');
 
     return (
