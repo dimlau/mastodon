@@ -63,9 +63,6 @@ class NavigationPanel extends Component {
 
     return (
       <div className='navigation-panel'>
-        <div className='navigation-panel__logo'>
-          {!banner && <hr />}
-        </div>
 
         {banner &&
           <div class='navigation-panel__banner'>
