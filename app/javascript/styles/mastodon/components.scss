@@ -1,5 +1,3 @@
-@use 'sass:color';
-
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -128,8 +126,8 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: color.scale($highlight-text-color, $lightness: 4%);
-      color: color.scale($highlight-text-color, $lightness: 4%);
+      border-color: lighten($highlight-text-color, 4%);
+      color: lighten($highlight-text-color, 4%);
       background-color: transparent;
       text-decoration: none;
     }
@@ -252,7 +250,7 @@
   &:hover,
   &:active,
   &:focus {
-    color: color.scale($action-button-color, $lightness: 7%);
+    color: lighten($action-button-color, 7%);
     background-color: rgba($action-button-color, 0.15);
   }
 
@@ -261,7 +259,7 @@
   }
 
   &.disabled {
-    color: color.scale($action-button-color, $lightness: -13%);
+    color: darken($action-button-color, 13%);
     background-color: transparent;
     cursor: default;
   }
@@ -272,7 +270,7 @@
     &:hover,
     &:active,
     &:focus {
-      color: color.scale($lighter-text-color, $lightness: -7%);
+      color: darken($lighter-text-color, 7%);
       background-color: rgba($lighter-text-color, 0.15);
     }
 
@@ -281,7 +279,7 @@
     }
 
     &.disabled {
-      color: color.scale($lighter-text-color, $lightness: 7%);
+      color: lighten($lighter-text-color, 7%);
       background-color: transparent;
     }
   }
@@ -297,7 +295,7 @@
     }
 
     &.disabled {
-      color: color.scale($highlight-text-color, $lightness: 13%);
+      color: lighten($highlight-text-color, 13%);
     }
   }
 
@@ -352,7 +350,7 @@
   &:hover,
   &:active,
   &:focus {
-    color: color.scale($lighter-text-color, $lightness: -7%);
+    color: darken($lighter-text-color, 7%);
     background-color: rgba($lighter-text-color, 0.15);
   }
 
@@ -361,7 +359,7 @@
   }
 
   &.disabled {
-    color: color.scale($lighter-text-color, $lightness: 20%);
+    color: lighten($lighter-text-color, 20%);
     background-color: transparent;
     cursor: default;
   }
@@ -853,7 +851,7 @@ body > [data-popper-placement] {
       &__sep {
         width: 1px;
         height: 22px;
-        background: color.scale($ui-base-color, $lightness: 8%);
+        background: lighten($ui-base-color, 8%);
         flex: 0 0 auto;
       }
     }
@@ -1080,7 +1078,7 @@ body > [data-popper-placement] {
 
     &:hover,
     &:focus {
-      background: color.scale($action-button-color, $lightness: 7%);
+      background: lighten($action-button-color, 7%);
       text-decoration: none;
     }
 
@@ -1148,7 +1146,7 @@ body > [data-popper-placement] {
       inset-inline-start: 50%;
       top: 4px;
       transform: translateX(-50%);
-      background: color.scale($ui-base-color, $lightness: 8%);
+      background: lighten($ui-base-color, 8%);
       width: 2px;
       height: calc(100% + 32px - 8px); // Account for gap to next element
     }
@@ -1185,11 +1183,11 @@ body > [data-popper-placement] {
 
 .edit-indicator {
   border-radius: 4px 4px 0 0;
-  background: color.scale($ui-base-color, $lightness: 4%);
+  background: lighten($ui-base-color, 4%);
   padding: 12px;
   overflow-y: auto;
   flex: 0 0 auto;
-  border-bottom: 0.5px solid color.scale($ui-base-color, $lightness: 8%);
+  border-bottom: 0.5px solid lighten($ui-base-color, 8%);
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -1382,7 +1380,7 @@ body > [data-popper-placement] {
 
   &__button {
     display: inline;
-    color: color.scale($ui-highlight-color, $lightness: 8%);
+    color: lighten($ui-highlight-color, 8%);
     border: 0;
     background: transparent;
     padding: 0;
@@ -1467,7 +1465,7 @@ body > [data-popper-placement] {
 
         &:hover,
         &:focus {
-          background: color.scale($ui-primary-color, $lightness: 8%);
+          background: lighten($ui-primary-color, 8%);
         }
       }
     }
@@ -1518,7 +1516,7 @@ body > [data-popper-placement] {
 
   &__line {
     height: 16px - 4px;
-    border-inline-start: 2px solid color.scale($ui-base-color, $lightness: 8%);
+    border-inline-start: 2px solid lighten($ui-base-color, 8%);
     width: 0;
     position: absolute;
     top: 0;
@@ -1623,7 +1621,7 @@ body > [data-popper-placement] {
   padding: 0 10px;
 
   .detailed-status__display-name {
-    color: color.scale($inverted-text-color, $lightness: 16%);
+    color: lighten($inverted-text-color, 16%);
 
     span {
       display: inline;
@@ -1838,13 +1836,13 @@ body > [data-popper-placement] {
   &:focus {
     .detailed-status,
     .detailed-status__action-bar {
-      background: mix(color.scale($ui-base-color, $lightness: 4%), $ui-highlight-color,  95%);
+      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
     }
   }
 
   .detailed-status__action-bar {
     border-top-color: mix(
-      color.scale($ui-base-color, $lightness: 8%),
+      lighten($ui-base-color, 8%),
       $ui-highlight-color,
       95%
     );
@@ -2292,7 +2290,7 @@ a.account__display-name {
 
     &:hover,
     &:focus {
-      background: color.scale($ui-base-lighter-color, $lightness: 7%);
+      background: lighten($ui-base-lighter-color, 7%);
       text-decoration: none;
     }
   }
@@ -2758,13 +2756,12 @@ a.account__display-name {
     &__main {
       box-sizing: border-box;
       width: 100%;
-      flex: 1;
+      flex: 0 1 auto;
       display: flex;
       flex-direction: column;
 
       @media screen and (min-width: $no-gap-breakpoint) {
-        padding: 0 10px;
-        max-width: 680px;
+        max-width: 600px;
       }
     }
   }
@@ -3267,7 +3264,7 @@ $ui-header-logo-wordmark-width: 99px;
   justify-content: space-between;
   gap: 10px;
   color: $highlight-text-color;
-  background: color.scale($ui-base-color, $lightness: 4%);
+  background: lighten($ui-base-color, 4%);
   border-radius: 8px;
   padding: 10px 15px;
   box-sizing: border-box;
@@ -3283,7 +3280,7 @@ $ui-header-logo-wordmark-width: 99px;
   &:hover,
   &:focus,
   &:active {
-    background: color.scale($ui-base-color, $lightness: 8%);
+    background: lighten($ui-base-color, 8%);
   }
 }
 
@@ -3325,7 +3322,7 @@ $ui-header-logo-wordmark-width: 99px;
   margin-bottom: 30px;
 
   &__item {
-    background: color.scale($ui-base-color, $lightness: 4%);
+    background: lighten($ui-base-color, 4%);
     border: 0;
     border-radius: 8px;
     display: flex;
@@ -3342,7 +3339,7 @@ $ui-header-logo-wordmark-width: 99px;
     &:hover,
     &:focus,
     &:active {
-      background: color.scale($ui-base-color, $lightness: 8%);
+      background: lighten($ui-base-color, 8%);
     }
 
     &__icon {
@@ -3413,7 +3410,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .follow-recommendations {
-  background: color.scale($ui-base-color, $lightness: -4%);
+  background: darken($ui-base-color, 4%);
   border-radius: 8px;
   margin-bottom: 30px;
 
@@ -3446,7 +3443,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .copy-paste-text {
-  background: color.scale($ui-base-color, $lightness: 4%);
+  background: lighten($ui-base-color, 4%);
   border-radius: 8px;
   border: 1px solid var(--background-border-color);
   padding: 16px;
@@ -3622,7 +3619,7 @@ $ui-header-logo-wordmark-width: 99px;
 
 .drawer__inner__mastodon {
   background: var(--background-color)
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color(color.scale($ui-base-color, $lightness: -4%))}"/></svg>')
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color(darken($ui-base-color, 4%))}"/></svg>')
     no-repeat bottom / 100% auto;
   flex: 1;
   min-height: 47px;
@@ -3817,12 +3814,12 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background: color.scale($ui-primary-color, $lightness: -5%);
+  background: darken($ui-primary-color, 5%);
 }
 
 .react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled)
   .react-toggle-track {
-  background: color.scale($ui-highlight-color, $lightness: 5%);
+  background: lighten($ui-highlight-color, 5%);
 }
 
 .switch-to-advanced {
@@ -3967,8 +3964,8 @@ $ui-header-logo-wordmark-width: 99px;
   kbd {
     display: inline-block;
     padding: 3px 5px;
-    background-color: color.scale($ui-base-color, $lightness: 8%);
-    border: 1px solid color.scale($ui-base-color, $lightness: -4%);
+    background-color: lighten($ui-base-color, 8%);
+    border: 1px solid darken($ui-base-color, 4%);
   }
 }
 
@@ -4201,7 +4198,7 @@ a.status-card {
   flex: 0 0 auto;
   width: 120px;
   aspect-ratio: 1;
-  background: color.scale($ui-base-color, $lightness: 8%);
+  background: lighten($ui-base-color, 8%);
   position: relative;
 
   & > .icon {
@@ -4325,7 +4322,7 @@ a.status-card {
     &:focus,
     &:active {
       text-decoration: underline;
-      color: color.scale($highlight-text-color, $lightness: 4%);
+      color: lighten($highlight-text-color, 4%);
     }
   }
 
@@ -4437,7 +4434,7 @@ a.status-card {
     font-size: 14px;
 
     &:hover {
-      color: color.scale($highlight-text-color, $lightness: 6%);
+      color: lighten($highlight-text-color, 6%);
     }
   }
 }
@@ -4543,7 +4540,7 @@ a.status-card {
   }
 
   &:hover {
-    color: color.scale($darker-text-color, $lightness: 4%);
+    color: lighten($darker-text-color, 4%);
   }
 
   &:focus-visible {
@@ -4693,7 +4690,7 @@ a.status-card {
 }
 
 .circular-progress {
-  color: color.scale($ui-base-color, $lightness: 26%);
+  color: lighten($ui-base-color, 26%);
   animation: 1.4s linear 0s infinite normal none running simple-rotate;
 
   circle {
@@ -4848,7 +4845,7 @@ a.status-card {
 }
 
 .modal-container--preloader {
-  background: color.scale($ui-base-color, $lightness: 8%);
+  background: lighten($ui-base-color, 8%);
 }
 
 .account--panel {
@@ -4924,7 +4921,7 @@ a.status-card {
       @include search-input;
 
       &::placeholder {
-        color: color.scale($darker-text-color, $lightness: 4%);
+        color: lighten($darker-text-color, 4%);
       }
 
       &::-moz-focus-inner {
@@ -4938,7 +4935,7 @@ a.status-card {
       }
 
       &:focus {
-        background: color.scale($ui-base-color, $lightness: 4%);
+        background: lighten($ui-base-color, 4%);
       }
 
       @media screen and (width <= 600px) {
@@ -4957,7 +4954,7 @@ a.status-card {
     }
 
     &__multi-value {
-      background: color.scale($ui-base-color, $lightness: 8%);
+      background: lighten($ui-base-color, 8%);
 
       &__remove {
         cursor: pointer;
@@ -4965,8 +4962,8 @@ a.status-card {
         &:hover,
         &:active,
         &:focus {
-          background: color.scale($ui-base-color, $lightness: 12%);
-          color: color.scale($darker-text-color, $lightness: 4%);
+          background: lighten($ui-base-color, 12%);
+          color: lighten($darker-text-color, 4%);
         }
       }
     }
@@ -4986,12 +4983,12 @@ a.status-card {
       &:hover,
       &:active,
       &:focus {
-        color: color.scale($dark-text-color, $lightness: 4%);
+        color: lighten($dark-text-color, 4%);
       }
     }
 
     &__indicator-separator {
-      background-color: color.scale($ui-base-color, $lightness: 8%);
+      background-color: lighten($ui-base-color, 8%);
     }
 
     &__menu {
@@ -5014,7 +5011,7 @@ a.status-card {
 
       &--is-focused,
       &--is-selected {
-        background: color.scale($ui-secondary-color, $lightness: -10%);
+        background: darken($ui-secondary-color, 10%);
       }
     }
   }
@@ -6072,7 +6069,7 @@ a.status-card {
 .onboarding-modal__paginator,
 .error-modal__footer {
   flex: 0 0 auto;
-  background: color.scale($ui-secondary-color, $lightness: -8%);
+  background: darken($ui-secondary-color, 8%);
   display: flex;
   padding: 25px;
 
@@ -6096,8 +6093,8 @@ a.status-card {
     &:hover,
     &:focus,
     &:active {
-      color: color.scale($lighter-text-color, $lightness: -4%);
-      background-color: color.scale($ui-secondary-color, $lightness: -16%);
+      color: darken($lighter-text-color, 4%);
+      background-color: darken($ui-secondary-color, 16%);
     }
 
     &.onboarding-modal__done,
@@ -6107,7 +6104,7 @@ a.status-card {
       &:hover,
       &:focus,
       &:active {
-        color: color.scale($inverted-text-color, $lightness: 4%);
+        color: lighten($inverted-text-color, 4%);
       }
     }
   }
@@ -6572,7 +6569,7 @@ a.status-card {
     background: $ui-primary-color;
 
     &:hover {
-      background: color.scale($ui-primary-color, $lightness: 8%);
+      background: lighten($ui-primary-color, 8%);
     }
   }
 
@@ -6895,9 +6892,9 @@ a.status-card {
     outline: 0;
     font-family: inherit;
     background: $simple-background-color
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(color.scale($simple-background-color, $lightness: -14%))}'/></svg>")
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>")
       no-repeat right 8px center / auto 16px;
-    border: 1px solid color.scale($simple-background-color, $lightness: -14%);
+    border: 1px solid darken($simple-background-color, 14%);
     border-radius: 4px;
     padding: 6px 10px;
     padding-inline-end: 30px;
@@ -7452,7 +7449,7 @@ a.status-card {
       &:hover,
       &:active,
       &:focus {
-        color: color.scale($darker-text-color, $lightness: 7%);
+        color: lighten($darker-text-color, 7%);
       }
     }
 
@@ -7574,7 +7571,7 @@ a.status-card {
       inset-inline-start: 0;
       top: 50%;
       transform: translate(0, -50%);
-      background: color.scale($ui-highlight-color, $lightness: 8%);
+      background: lighten($ui-highlight-color, 8%);
     }
 
     &__handle {
@@ -7587,7 +7584,7 @@ a.status-card {
       inset-inline-start: 0;
       margin-inline-start: -6px;
       transform: translate(0, -50%);
-      background: color.scale($ui-highlight-color, $lightness: 8%);
+      background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
       opacity: 0;
 
@@ -7641,7 +7638,7 @@ a.status-card {
       height: 4px;
       border-radius: 4px;
       top: 14px;
-      background: color.scale($ui-highlight-color, $lightness: 8%);
+      background: lighten($ui-highlight-color, 8%);
     }
 
     &__buffer {
@@ -7657,7 +7654,7 @@ a.status-card {
       height: 12px;
       top: 10px;
       margin-inline-start: -6px;
-      background: color.scale($ui-highlight-color, $lightness: 8%);
+      background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
 
       .no-reduce-motion & {
@@ -8005,7 +8002,7 @@ noscript {
 
   h4 {
     padding: 15px 0;
-    background: color.scale($ui-base-color, $lightness: 13%);
+    background: lighten($ui-base-color, 13%);
     font-weight: 500;
     font-size: 16px;
     text-align: center;
@@ -8059,11 +8056,11 @@ noscript {
   }
 
   &__account {
-    background: color.scale($ui-base-color, $lightness: 13%);
+    background: lighten($ui-base-color, 13%);
   }
 
   &__lists {
-    background: color.scale($ui-base-color, $lightness: 13%);
+    background: lighten($ui-base-color, 13%);
     height: 50vh;
     border-radius: 0 0 8px 8px;
     overflow-y: auto;
@@ -8214,7 +8211,7 @@ noscript {
     overflow: hidden;
     height: 145px;
     position: relative;
-    background: color.scale($ui-base-color, $lightness: -4%);
+    background: darken($ui-base-color, 4%);
     border-bottom: 1px solid var(--background-border-color);
 
     img {
@@ -8278,7 +8275,7 @@ noscript {
       }
 
       .icon-button {
-        border: 1px solid color.scale($ui-base-color, $lightness: 12%);
+        border: 1px solid lighten($ui-base-color, 12%);
         border-radius: 4px;
         box-sizing: content-box;
         padding: 5px;
@@ -8388,7 +8385,7 @@ noscript {
       }
 
       a {
-        color: color.scale($ui-highlight-color, $lightness: 8%);
+        color: lighten($ui-highlight-color, 8%);
       }
 
       .icon {
@@ -8598,7 +8595,7 @@ noscript {
       }
 
       path:last-child {
-        stroke: color.scale($highlight-text-color, $lightness: 6%) !important;
+        stroke: lighten($highlight-text-color, 6%) !important;
         fill: none !important;
       }
     }
@@ -8622,31 +8619,31 @@ noscript {
         }
 
         path:last-child {
-          stroke: color.scale($gold-star, $lightness: 6%) !important;
+          stroke: lighten($gold-star, 6%) !important;
         }
       }
     }
 
     &--disabled {
       .trends__item__name {
-        color: color.scale($ui-base-color, $lightness: 12%);
+        color: lighten($ui-base-color, 12%);
 
         a {
-          color: color.scale($ui-base-color, $lightness: 12%);
+          color: lighten($ui-base-color, 12%);
         }
       }
 
       .trends__item__current {
-        color: color.scale($ui-base-color, $lightness: 12%);
+        color: lighten($ui-base-color, 12%);
       }
 
       .trends__item__sparkline {
         path:first-child {
-          fill: rgba(color.scale($ui-base-color, $lightness: 12%), 0.25) !important;
+          fill: rgba(lighten($ui-base-color, 12%), 0.25) !important;
         }
 
         path:last-child {
-          stroke: color.scale(color.scale($ui-base-color, $lightness: 12%), $lightness: 6%) !important;
+          stroke: lighten(lighten($ui-base-color, 12%), 6%) !important;
         }
       }
     }
@@ -8664,7 +8661,7 @@ noscript {
   padding-bottom: 0;
 
   &:focus {
-    background: color.scale($ui-base-color, $lightness: 2%);
+    background: lighten($ui-base-color, 2%);
     outline: 0;
   }
 
@@ -8733,7 +8730,7 @@ noscript {
 }
 
 .announcements {
-  background: color.scale($ui-base-color, $lightness: 8%);
+  background: lighten($ui-base-color, 8%);
   font-size: 13px;
   display: flex;
   align-items: flex-end;
@@ -8817,7 +8814,7 @@ noscript {
 
   &__item {
     flex-shrink: 0;
-    background: color.scale($ui-base-color, $lightness: 12%);
+    background: lighten($ui-base-color, 12%);
     border: 0;
     border-radius: 3px;
     margin: 2px;
@@ -8860,12 +8857,12 @@ noscript {
     &:hover,
     &:focus,
     &:active {
-      background: color.scale($ui-base-color, $lightness: 16%);
+      background: lighten($ui-base-color, 16%);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
 
       &__count {
-        color: color.scale($darker-text-color, $lightness: 4%);
+        color: lighten($darker-text-color, 4%);
       }
     }
 
@@ -8873,13 +8870,13 @@ noscript {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
       background-color: mix(
-        color.scale($ui-base-color, $lightness: 12%),
+        lighten($ui-base-color, 12%),
         $ui-highlight-color,
         80%
       );
 
       .reactions-bar__item__count {
-        color: color.scale($highlight-text-color, $lightness: 8%);
+        color: lighten($highlight-text-color, 8%);
       }
     }
   }
@@ -8910,7 +8907,7 @@ noscript {
     &:active,
     &:focus {
       opacity: 1;
-      color: color.scale($darker-text-color, $lightness: 4%);
+      color: lighten($darker-text-color, 4%);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
     }
@@ -8950,7 +8947,7 @@ noscript {
 
   &__footer {
     border-radius: 0 0 4px 4px;
-    background: color.scale($ui-base-color, $lightness: 4%);
+    background: lighten($ui-base-color, 4%);
     padding: 10px;
     padding-top: 12px;
     display: flex;
@@ -8959,7 +8956,7 @@ noscript {
 
   &__header {
     border-radius: 4px 4px 0 0;
-    background: color.scale($ui-base-color, $lightness: 4%);
+    background: lighten($ui-base-color, 4%);
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -9021,7 +9018,7 @@ noscript {
   &:hover,
   &:focus,
   &:active {
-    border-color: color.scale($ui-base-color, $lightness: 12%);
+    border-color: lighten($ui-base-color, 12%);
   }
 }
 
@@ -9061,7 +9058,7 @@ noscript {
 }
 
 .explore__search-header {
-  background: color.scale($ui-base-color, $lightness: -4%);
+  background: darken($ui-base-color, 4%);
   justify-content: center;
   align-items: center;
   padding: 15px;
@@ -9419,7 +9416,7 @@ noscript {
         min-width: 0;
 
         &::placeholder {
-          color: color.scale($darker-text-color, $lightness: 4%);
+          color: lighten($darker-text-color, 4%);
         }
 
         &:focus {
@@ -9441,7 +9438,7 @@ noscript {
 
     &.focused &__input {
       border-color: $highlight-text-color;
-      background: color.scale($ui-base-color, $lightness: 4%);
+      background: lighten($ui-base-color, 4%);
     }
 
     &.invalid &__input {
@@ -9482,11 +9479,6 @@ noscript {
           margin-bottom: 0;
         }
       }
-
-      &:only-of-type {
-        flex: 1;
-        width: 100%;
-      }
     }
   }
 
@@ -9514,7 +9506,7 @@ noscript {
   input {
     display: block;
     font-family: inherit;
-    background: color.scale($ui-base-color, $lightness: -8%);
+    background: darken($ui-base-color, 8%);
     border: 1px solid $highlight-text-color;
     color: $darker-text-color;
     border-radius: 4px;
@@ -9527,7 +9519,7 @@ noscript {
 
     &:focus {
       outline: 0;
-      background: color.scale($ui-base-color, $lightness: -4%);
+      background: darken($ui-base-color, 4%);
     }
   }
 
@@ -9719,14 +9711,14 @@ noscript {
 
   code {
     font-size: 0.875em;
-    background: color.scale($ui-base-color, $lightness: -8%);
+    background: darken($ui-base-color, 8%);
     border-radius: 4px;
     padding: 0.2em 0.3em;
   }
 
   hr {
     border: 0;
-    border-top: 1px solid color.scale($ui-base-color, $lightness: 4%);
+    border-top: 1px solid lighten($ui-base-color, 4%);
     margin-top: 3em;
     margin-bottom: 3em;
   }
@@ -9939,7 +9931,7 @@ noscript {
       width: 100%;
       height: auto;
       aspect-ratio: 1.9;
-      background: color.scale($ui-base-color, $lightness: 4%);
+      background: lighten($ui-base-color, 4%);
       border-radius: 8px;
       margin-bottom: 30px;
     }
@@ -10119,7 +10111,7 @@ noscript {
       color: $darker-text-color;
 
       &:nth-child(2n) {
-        background: color.scale($ui-base-color, $lightness: -4%);
+        background: darken($ui-base-color, 4%);
       }
 
       &:last-child {
@@ -10171,7 +10163,7 @@ noscript {
   color: $white;
   background: rgba($black, 0.85);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(color.scale($classic-base-color, $lightness: 4%), 0.85);
+  border: 1px solid rgba(lighten($classic-base-color, 4%), 0.85);
   border-radius: 8px;
   box-shadow:
     0 10px 15px -3px rgba($base-shadow-color, 0.25),
@@ -10352,7 +10344,7 @@ noscript {
         opacity: 1;
 
         .inline-follow-suggestions__body__scroll-button__icon {
-          background: color.scale($ui-highlight-color, $lightness: 4%);
+          background: lighten($ui-highlight-color, 4%);
         }
       }
     }

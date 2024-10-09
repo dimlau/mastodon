@@ -114,7 +114,7 @@ class NavigationPanel extends Component {
     return match || location.pathname.startsWith('/public');
   };
 
-  a2b295c118758ddff25a6dfe3585010f263566efrender () {
+  render () {
     const { intl } = this.props;
     const { signedIn, disabledAccountId, permissions } = this.props.identity;
 

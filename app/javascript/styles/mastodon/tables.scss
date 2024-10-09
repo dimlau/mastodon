@@ -1,5 +1,3 @@
-@use 'sass:color';
-
 .table {
   width: 100%;
   max-width: 100%;
@@ -243,7 +241,7 @@ a.table-action-link {
       &:hover,
       &:focus,
       &:active {
-        background: color.scale($ui-base-color, $lightness: 8%);
+        background: lighten($ui-base-color, 8%);
       }
     }
   }
