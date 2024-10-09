@@ -48,7 +48,15 @@ class LinkFooter extends PureComponent {
     return (
       <div className='link-footer'>
         <p>
-          <Link key='about' to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
+          <strong>{domain}</strong>:
+          {' '}
+          <Link to='/about' target={multiColumn ? '_blank' : undefined}><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
+          {statusPageUrl && (
+            <>
+              {DividingCircle}
+              <a href={statusPageUrl} target='_blank' rel='noopener'><FormattedMessage id='footer.status' defaultMessage='Status' /></a>
+            </>
+          )}
           {canInvite && (
             <>
               {DividingCircle}
@@ -66,11 +74,17 @@ class LinkFooter extends PureComponent {
         </p>
 
         <p>
+          <strong>Mastodon</strong>:
+          {' '}
+          <a href='https://joinmastodon.org' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
+          {DividingCircle}
           <a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='footer.get_app' defaultMessage='Get the app' /></a>
           {DividingCircle}
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
           {DividingCircle}
-          <a href={source_url} rel='noopener noreferrer' target='_blank'>v{version}</a>
+          <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
+          {DividingCircle}
+          <span className='version'>v{version}</span>
         </p>
       </div>
     );

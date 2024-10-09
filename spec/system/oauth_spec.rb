@@ -24,28 +24,28 @@ RSpec.describe 'Using OAuth from an external app' do
       subject
 
       # It presents the user with an authorization page
-      expect(page).to have_content(oauth_authorize_text)
-
-      # It grants the app access to the account
-      expect { click_on oauth_authorize_text }
-        .to change { user_has_grant_with_client_app? }.to(true)
+      expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
 
       # Upon authorizing, it redirects to the apps' callback URL
-      expect(page).to redirect_to_callback_url
+      click_on I18n.t('doorkeeper.authorizations.buttons.authorize')
+      expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+
+      # It grants the app access to the account
+      expect(Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id)).to be true
     end
 
     it 'when rejecting the authorization request' do
       subject
 
       # It presents the user with an authorization page
-      expect(page).to have_content(oauth_deny_text)
-
-      # It does not grant the app access to the account
-      expect { click_on oauth_deny_text }
-        .to_not change { user_has_grant_with_client_app? }.from(false)
+      expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.deny'))
 
       # Upon denying, it redirects to the apps' callback URL
-      expect(page).to redirect_to_callback_url
+      click_on I18n.t('doorkeeper.authorizations.buttons.deny')
+      expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+
+      # It does not grant the app access to the account
+      expect(Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id)).to be false
     end
 
     # The tests in this context ensures that requests without PKCE parameters
@@ -133,6 +133,7 @@ RSpec.describe 'Using OAuth from an external app' do
     end
 
     it 'when accepting the authorization request' do
+      params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
       visit "/oauth/authorize?#{params.to_query}"
 
       # It presents the user with a log-in page
@@ -144,17 +145,18 @@ RSpec.describe 'Using OAuth from an external app' do
 
       # Logging in redirects to an authorization page
       fill_in_auth_details(email, password)
-      expect(page).to have_content(oauth_authorize_text)
-
-      # It grants the app access to the account
-      expect { click_on oauth_authorize_text }
-        .to change { user_has_grant_with_client_app? }.to(true)
+      expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
 
       # Upon authorizing, it redirects to the apps' callback URL
-      expect(page).to redirect_to_callback_url
+      click_on I18n.t('doorkeeper.authorizations.buttons.authorize')
+      expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+
+      # It grants the app access to the account
+      expect(Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id)).to be true
     end
 
     it 'when rejecting the authorization request' do
+      params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
       visit "/oauth/authorize?#{params.to_query}"
 
       # It presents the user with a log-in page
@@ -166,20 +168,21 @@ RSpec.describe 'Using OAuth from an external app' do
 
       # Logging in redirects to an authorization page
       fill_in_auth_details(email, password)
-      expect(page).to have_content(oauth_authorize_text)
-
-      # It does not grant the app access to the account
-      expect { click_on oauth_deny_text }
-        .to_not change { user_has_grant_with_client_app? }.from(false)
+      expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
 
       # Upon denying, it redirects to the apps' callback URL
-      expect(page).to redirect_to_callback_url
+      click_on I18n.t('doorkeeper.authorizations.buttons.deny')
+      expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+
+      # It does not grant the app access to the account
+      expect(Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id)).to be false
     end
 
     context 'when the user has set up TOTP' do
       let(:user) { Fabricate(:user, email: email, password: password, otp_required_for_login: true, otp_secret: User.generate_otp_secret) }
 
       it 'when accepting the authorization request' do
+        params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
         visit "/oauth/authorize?#{params.to_query}"
 
         # It presents the user with a log-in page
@@ -199,17 +202,18 @@ RSpec.describe 'Using OAuth from an external app' do
 
         # Filling in the correct TOTP code redirects to an app authorization page
         fill_in_otp_details(user.current_otp)
-        expect(page).to have_content(oauth_authorize_text)
-
-        # It grants the app access to the account
-        expect { click_on oauth_authorize_text }
-          .to change { user_has_grant_with_client_app? }.to(true)
+        expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
 
         # Upon authorizing, it redirects to the apps' callback URL
-        expect(page).to redirect_to_callback_url
+        click_on I18n.t('doorkeeper.authorizations.buttons.authorize')
+        expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+
+        # It grants the app access to the account
+        expect(Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id)).to be true
       end
 
       it 'when rejecting the authorization request' do
+        params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
         visit "/oauth/authorize?#{params.to_query}"
 
         # It presents the user with a log-in page
@@ -229,14 +233,14 @@ RSpec.describe 'Using OAuth from an external app' do
 
         # Filling in the correct TOTP code redirects to an app authorization page
         fill_in_otp_details(user.current_otp)
-        expect(page).to have_content(oauth_authorize_text)
-
-        # It does not grant the app access to the account
-        expect { click_on oauth_deny_text }
-          .to_not change { user_has_grant_with_client_app? }.from(false)
+        expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
 
         # Upon denying, it redirects to the apps' callback URL
-        expect(page).to redirect_to_callback_url
+        click_on I18n.t('doorkeeper.authorizations.buttons.deny')
+        expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+
+        # It does not grant the app access to the account
+        expect(Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id)).to be false
       end
     end
     # TODO: external auth
@@ -247,25 +251,5 @@ RSpec.describe 'Using OAuth from an external app' do
   def fill_in_otp_details(value)
     fill_in 'user_otp_attempt', with: value
     click_on I18n.t('auth.login')
-  end
-
-  def oauth_authorize_text
-    I18n.t('doorkeeper.authorizations.buttons.authorize')
-  end
-
-  def oauth_deny_text
-    I18n.t('doorkeeper.authorizations.buttons.deny')
-  end
-
-  def redirect_to_callback_url
-    have_current_path(/\A#{client_app.redirect_uri}/, url: true)
-  end
-
-  def user_has_grant_with_client_app?
-    Doorkeeper::AccessGrant
-      .exists?(
-        application: client_app,
-        resource_owner_id: user.id
-      )
   end
 end

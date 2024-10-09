@@ -21,7 +21,6 @@ eo:
       one: Afiŝo
       other: Mesaĝoj
     posts_tab_heading: Afiŝoj
-    self_follow_error: Sekvi vian propran konton ne estas permesita
   admin:
     account_actions:
       action: Plenumi agon
@@ -1276,6 +1275,8 @@ eo:
       merge_long: Konservi ekzistajn registrojn kaj aldoni novajn
       overwrite: Anstataŭigi
       overwrite_long: Anstataŭigi la nunajn registrojn per la novaj
+    preambles:
+      muting_html: Vi estas <strong>silentonta</strong> ĝis <strong>%{total_items} kontoj</strong> de <strong>%{filename}</strong>.
     preface: Vi povas importi datumojn, kiujn vi eksportis el alia servilo, kiel liston de homoj, kiujn vi sekvas aŭ blokas.
     recent_imports: Lastatempaj importoj
     states:
