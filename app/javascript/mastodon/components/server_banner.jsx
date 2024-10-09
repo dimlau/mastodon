@@ -35,7 +35,9 @@ class ServerBanner extends PureComponent {
     return (
       <div className='server-banner'>
 
-        <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
+        <Link to='/about'>
+          <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
+        </Link>
 
         <div className='server-banner__description'>
           {isLoading ? (
@@ -49,9 +51,31 @@ class ServerBanner extends PureComponent {
           ) : server.get('description')}
         </div>
 
-        <hr className='spacer' />
+        <div className='server-banner__meta'>
+          <div className='server-banner__meta__column'>
+            <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
-        <Link className='button button--block button-secondary' to='/about'><FormattedMessage id='server_banner.learn_more' defaultMessage='Learn more' /></Link>
+            <Account id={server.getIn(['contact', 'account', 'id'])} size={36} minimal />
+          </div>
+
+          <div className='server-banner__meta__column'>
+            <h4><FormattedMessage id='server_banner.server_stats' defaultMessage='Server stats:' /></h4>
+
+            {isLoading ? (
+              <>
+                <strong className='server-banner__number'><Skeleton width='10ch' /></strong>
+                <br />
+                <span className='server-banner__number-label'><Skeleton width='5ch' /></span>
+              </>
+            ) : (
+              <>
+                <strong className='server-banner__number'><ShortNumber value={server.getIn(['usage', 'users', 'active_month'])} /></strong>
+                <br />
+                <span className='server-banner__number-label' title={intl.formatMessage(messages.aboutActiveUsers)}><FormattedMessage id='server_banner.active_users' defaultMessage='active users' /></span>
+              </>
+            )}
+          </div>
+        </div>
       </div>
     );
   }
