@@ -36,8 +36,7 @@ module Mastodon
       super()
     end
   end
-end
-HTTP_CONNECTION_ERRORS = [
+  HTTP_CONNECTION_ERRORS = [
     HTTP::ConnectionError,
     HTTP::Error,
     HTTP::TimeoutError,
